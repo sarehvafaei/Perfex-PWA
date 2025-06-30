@@ -7,8 +7,9 @@ const API = axios.create({
   },
 });
 
-export const uploadFile = async (file) => {
+export const uploadFile = async (projectId, file) => {
   const formData = new FormData();
+  formData.append('project_id', projectId);
   formData.append('file', file);
   return await API.post('/upload', formData);
 };

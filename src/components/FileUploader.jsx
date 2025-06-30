@@ -14,7 +14,7 @@ export default function FileUploader() {
 
     setStatus('Uploading...');
     try {
-      await uploadFile(file);
+      await uploadFile(projectId, file);
       setStatus('Upload successful!');
     } catch (error) {
       console.error(error);
@@ -24,7 +24,7 @@ export default function FileUploader() {
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-4">
-      <input type="text" placeholder="Project ID" value={projectId} onChange={(e) => setProjectId(e.target.value)} inputMode="numeric" />
+      <input type="text" placeholder="Project ID" value={projectId} onChange={(e) => setProjectId(e.target.value)} className="w-full border px-2 py-1" inputMode="numeric" />
       <input type="file" onChange={(e) => setFile(e.target.files[0])} />
       <button
         onClick={handleUpload}
@@ -34,8 +34,5 @@ export default function FileUploader() {
       </button>
       <p className="text-sm text-gray-700">{status}</p>
     </div>
-
-
-
   );
 }

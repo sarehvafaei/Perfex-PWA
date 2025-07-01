@@ -24,11 +24,11 @@ export default function FileUploader() {
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-4">
-      <input type="text" placeholder="Project ID" value={projectId} onChange={(e) => setProjectId(e.target.value)} className="w-full border px-2 py-1" inputMode="numeric" />
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+      <input type="text" placeholder="Project ID" value={projectId} onChange={(e) => setProjectId(e.target.value)} className="w-full px-2 py-1 border rounded" inputMode="numeric" />
+      <input type="file" onChange={(e) => setFile(e.target.files[0])} className="w-full px-2 py-1 border rounded" />
       <button
         onClick={handleUpload}
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        className="px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700"
       >
         Upload File
       </button>

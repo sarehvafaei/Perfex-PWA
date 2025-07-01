@@ -1,13 +1,6 @@
-import React from 'react';
-import FileUploader from './components/FileUploader';
+import { Navigate } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Perfex PWA File Uploader</h1>
-      <FileUploader />
-    </div>
-  );
+export default function App() {
+  const isAuthenticated = !!localStorage.getItem('authToken');
+  return <Navigate to={isAuthenticated ? '/dashboard' : '/login'} />;
 }
-
-export default App;

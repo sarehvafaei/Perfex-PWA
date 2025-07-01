@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { uploadFile } from '../api/perfex';
+import { uploadFile } from '../api/upload';
 
 export default function FileUploader() {
   const [projectId, setProjectId] = useState('');

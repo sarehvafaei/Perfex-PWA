@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/perfex';
+import { login } from '../api/auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -11,7 +11,7 @@ export default function Login() {
   // 🔁 Redirect if already logged in
   useEffect(() => {
     if (localStorage.getItem('authToken')) {
-      navigate('/Dashboard');
+      navigate('/dashboard');
     }
   }, [navigate]);
 
@@ -23,7 +23,7 @@ export default function Login() {
       // Check structure based on Perfex's API
       if (data && data.token) {
         localStorage.setItem('authToken', data.token);
-        navigate('/Dashboard');
+        navigate('/dashboard');
       } else {
         setError('Invalid login response');
       }
@@ -53,7 +53,7 @@ export default function Login() {
         />
         <button
           onClick={handleLogin}
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          className="w-full bg-blue-600 text-black py-2 rounded hover:bg-blue-700"
         >
           Login
         </button>

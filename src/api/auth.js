@@ -1,20 +1,21 @@
 import axios from 'axios';
 
-const API_BASE = 'https://wordpress-946960-5227163.cloudwaysapps.com/client-portal/api/Api_authentication'; // update this with your real path
+const API_BASE = 'https://wordpress-946960-5227163.cloudwaysapps.com/client-portal/api/Authentication_login'; // update this with your real path
 
 const API = axios.create({
   baseURL: API_BASE,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
 });
 
 // ⬇️ Login endpoint
 export const login = async (email, password) => {
-  const res = await API.post('/login', {
-    email,
-    password,
-  });
+  const formData = new URLSearchParams();
+  formData.append('email', email);
+  formData.append('password', password);
+
+  const res = await API.post('/login', formData);
   return res.data;
 };
 

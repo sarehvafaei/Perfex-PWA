@@ -5,7 +5,7 @@ import PrivateRoute from './PrivateRoute';
 import App from './App';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import './index.css';
+import './assets/css/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter basename="/perfex-pwa">

@@ -34,4 +34,15 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+  resolve: {
+    alias: {
+      api: '/src/api',
+      assets: '/src/assets',
+      components: '/src/components',
+      layouts: '/src/layouts',
+      routes: '/src/routes.js',
+      variables: '/src/variables',
+      views: '/src/views',
+    },
+  }
 });

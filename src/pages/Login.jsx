@@ -126,7 +126,8 @@ c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.
                   </div>
                 </div>
                 <div className="absolute right-0 hidden h-full min-h-screen md:block lg:w-[49vw] 2xl:w-[44vw]">
-                  <img className="absolute flex h-full w-full items-end justify-center bg-cover bg-center lg:rounded-bl-[120px] xl:rounded-bl-[200px]" src='./img/horizon-logo.png' />
+                  <div className="absolute flex h-full w-full items-end justify-center sareh bg-cover bg-center lg:rounded-bl-[120px] xl:rounded-bl-[200px]">
+                  </div>
                 </div>
               </div>
               <div className="z-[5] mx-auto flex w-full max-w-screen-sm flex-col items-center justify-between px-[20px] pb-4 lg:mb-6 lg:max-w-[100%] lg:flex-row xl:mb-2 xl:w-[1310px] xl:pb-6"><p className="mb-6 text-center text-sm text-gray-600 md:text-base lg:mb-0">©2025 Horizon UI. All Rights Reserved.</p>

@@ -1,6 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import PrivateRoute from './PrivateRoute';
 import App from './App';
@@ -19,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="auth/*" element={<Auth />} />
       <Route path="admin/*" element={<Admin />} />
       <Route path="rtl/*" element={<RTL />} />
-      <Route path="/admin/default" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      <Route path="/layouts/admin" />
     </Routes>
   </BrowserRouter>
 );

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_BASE = 'https://wordpress-946960-5227163.cloudwaysapps.com/client-portal/api/pwa_authentication'; // update this with your real path
+const API_BASE = 'https://wordpress-946960-5227163.cloudwaysapps.com/client-portal/api/Pwa_authentication'; // update this with your real path
 
 const API = axios.create({
   baseURL: API_BASE,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
 });
 

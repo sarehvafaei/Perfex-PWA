@@ -2,9 +2,9 @@ import InputField from "components/fields/InputField";
 import { FcGoogle } from "react-icons/fc";
 import Checkbox from "components/checkbox";
 
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { login } from 'api/auth';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { login } from "api/auth";
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -33,7 +33,11 @@ export default function SignIn() {
       }
     } catch (err) {
       console.error(err);
-      setError('Login failed. Check your credentials.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('Login failed. Check your credentials.');
+      }
     }
   };
 
@@ -61,28 +65,27 @@ export default function SignIn() {
           <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
         </div>
         {/* Email */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Email*"
-          placeholder="mail@simmmple.com"
-          id="email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
+        <div className="mb-3">
+          <label for="email" className="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Email*</label>
+          <input 
+            type="text"
+            placeholder="mail@simmmple.com" 
+            className="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark:!border-white/10 dark:text-white"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
         {/* Password */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Password*"
-          placeholder="Min. 8 characters"
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="mb-3">
+          <label for="password" className="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Password*</label>
+          <input 
+            type="password" 
+            placeholder="Min. 8 characters" 
+            className="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark:!border-white/10 dark:text-white"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">

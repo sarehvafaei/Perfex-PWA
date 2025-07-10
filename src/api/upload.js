@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://wordpress-946960-5227163.cloudwaysapps.com/client-portal/api/project_files', // Replace with actual Perfex API endpoint
+  baseURL: 'https://wordpress-946960-5227163.cloudwaysapps.com/client-portal/api/project_files',
   headers: {
     //Authorization: 'Bearer YOUR_API_KEY', // Replace with your actual API key
   },

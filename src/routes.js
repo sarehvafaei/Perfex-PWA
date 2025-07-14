@@ -2,7 +2,7 @@ import React from "react";
 
 // Admin Imports
 import MainDashboard from "views/admin/default";
-import ProjectsPage from "views/admin/projects";
+import Tables from "views/admin/projects";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/tables";
@@ -34,7 +34,7 @@ const routes = [
     layout: "/admin",
     path: "projects",
     icon: MdFolderOpen,
-    component: ProjectsPage,
+    component: Tables,
   },
   {
     name: "NFT Marketplace",

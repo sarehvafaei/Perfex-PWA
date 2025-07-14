@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { getProjects } from "api/projects";
+import {
+  columnsDataDevelopment,
+} from "./variables/columnsData";
+import tableDataDevelopment from "./variables/tableDataDevelopment.json";
+import DevelopmentTable from "./components/DevelopmentTable";
 
-export default function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        const data = await getProjects();
-        setProjects(data);
-      } catch (err) {
-        console.error('Error fetching projects:', err);
-      }
-    }
-
-    fetchProjects();
-  }, []);
-
+const Tables = () => {
   return (
     <div>
-      <ul className="mt-2">
-        {projects.map((project) => (
-          <li key={project.id} className="mb-2">
-            <strong>{project.name}</strong>: {project.description}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-1">
+        <DevelopmentTable
+          columnsData={columnsDataDevelopment}
+          tableData={tableDataDevelopment}
+        />
+      </div>
     </div>
   );
-}
+};
+
+export default Tables;

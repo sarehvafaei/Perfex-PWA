@@ -1,11 +1,11 @@
 import React from "react";
 
 const STEPS = [
-  { id: 1, label: "Not Started", color: "#475569", bg: "#f8f8f9" },
-  { id: 2, label: "In Progress", color: "#2563eb", bg: "#f6f9fe" },
-  { id: 3, label: "On Hold", color: "#f97316", bg: "bg-orange-100" },
-  { id: 4, label: "Finished", color: "#16a34a", bg: "#f6fcf8" },
-  { id: 5, label: "Cancelled", color: "#94a3b8", bg: "bg-green-100" },
+  { id: 1, label: "Not Started", color: "text-gray-700", bg: "bg-gray-100" },
+  { id: 2, label: "In Progress", color: "text-blue-700", bg: "bg-blue-100" },
+  { id: 3, label: "On Hold", color: "text-orange-700", bg: "bg-orange-100" },
+  { id: 4, label: "Cancelled", color: "text-red-700", bg: "bg-red-100" },
+  { id: 5, label: "Finished", color: "text-green-700", bg: "bg-green-100" },
 ];
 
 export default function StatusSteps({ summary }) {

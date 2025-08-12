@@ -1,12 +1,11 @@
 import React from "react";
 
 // Admin Imports
+import ProjectsPage from "views/admin/projects";
 import MainDashboard from "views/admin/default";
-import Tables from "views/admin/projects";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/tables";
-import RTLDefault from "views/rtl/default";
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
@@ -23,18 +22,18 @@ import {
 
 const routes = [
   {
+    name: "Projects",
+    layout: "/admin",
+    path: "projects",
+    icon: MdFolderOpen,
+    component: ProjectsPage,
+  },
+  {
     name: "Main Dashboard",
     layout: "/admin",
     path: "default",
     icon: MdHome,
     component: MainDashboard,
-  },
-   {
-    name: "Projects",
-    layout: "/admin",
-    path: "projects",
-    icon: MdFolderOpen,
-    component: Tables,
   },
   {
     name: "NFT Marketplace",
@@ -64,13 +63,6 @@ const routes = [
     path: "sign-in",
     icon: MdLock,
     component: SignIn,
-  },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: MdHome,
-    component: RTLDefault,
   },
 ];
 export default routes;

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { uploadFile } from '../api/upload';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { uploadFile } from "api/upload";
 
-export default function FileUploader() {
+export default function UploadFiles() {
   const [projectId, setProjectId] = useState('');
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState('');

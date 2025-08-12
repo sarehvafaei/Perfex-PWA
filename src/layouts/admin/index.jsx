@@ -5,6 +5,8 @@ import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
 import routes from "routes";
 
+import SingleProject from "views/admin/projects/SingleProject";
+
 export default function Admin(props) {
   const { ...rest } = props;
   const location = useLocation();
@@ -64,7 +66,7 @@ export default function Admin(props) {
       <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
         {/* Main Content */}
         <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[343px]`}
         >
           {/* Routes */}
           <div className="h-full">
@@ -75,14 +77,15 @@ export default function Admin(props) {
               secondary={getActiveNavbar(routes)}
               {...rest}
             />
-            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
+            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2 mt-6">
               <Routes>
                 {getRoutes(routes)}
 
                 <Route
                   path="/"
-                  element={<Navigate to="/admin/default" replace />}
+                  element={<Navigate to="/admin/projects" replace />}
                 />
+                <Route path="project/:id" element={<SingleProject />} />
               </Routes>
             </div>
             <div className="p-3">

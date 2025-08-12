@@ -19,8 +19,7 @@ export function SidebarLinks(props) {
     return routes.map((route, index) => {
       if (
         route.layout === "/admin" ||
-        route.layout === "/auth" ||
-        route.layout === "/rtl"
+        route.layout === "/auth"
       ) {
         return (
           <Link key={index} to={route.layout + "/" + route.path}>
@@ -36,7 +35,7 @@ export function SidebarLinks(props) {
                       : "font-medium text-gray-600"
                   }`}
                 >
-                  {route.icon ? route.icon : <DashIcon />}{" "}
+                  {route.icon ? <route.icon className="h-6 w-6" /> : <DashIcon />}{" "}
                 </span>
                 <p
                   className={`leading-1 ml-4 flex ${

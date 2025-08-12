@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getProjects } from "api/projects";
 
 import Card from "components/card";
-import CardMenu from "components/card/CardMenu";
+//import CardMenu from "components/card/CardMenu";
 
 import {
   createColumnHelper,
@@ -12,6 +12,18 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+
+const TaskStatusBadge = ({ label, color }) => {
+  const bg = color ? `${color}22` : undefined; // add transparency
+  return (
+    <span
+      className="px-2 py-1 rounded-full text-xs font-medium"
+      style={{ backgroundColor: bg, color: color || "#374151", border: `1px solid ${color || "#d1d5db"}` }}
+    >
+      {label}
+    </span>
+  );
+};
 
 const columnHelper = createColumnHelper();
 
@@ -79,15 +91,8 @@ export default function ProjectsPage() {
   });
 
   return (
-    <Card extra="w-full h-full sm:overflow-auto px-6">
-      <header className="relative flex items-center justify-between pt-4">
-        <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Projects
-        </div>
-        <CardMenu />
-      </header>
-
-      <div className="mt-8 overflow-x-auto">
+    <Card extra="w-full h-full sm:overflow-auto">
+      <div className="mt-8 mb-8 overflow-x-auto px-6">
         <table className="w-full">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (

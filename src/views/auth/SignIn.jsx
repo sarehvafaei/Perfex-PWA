@@ -15,7 +15,7 @@ export default function SignIn() {
   // 🔁 Redirect if already logged in
   useEffect(() => {
     if (localStorage.getItem('authToken')) {
-      navigate('/admin/default');
+      navigate('/admin/projects');
     }
   }, [navigate]);
 
@@ -27,7 +27,7 @@ export default function SignIn() {
       // Check structure based on Perfex's API
       if (data && data.token) {
         localStorage.setItem('authToken', data.token);
-        navigate('/admin/default');
+        navigate('/admin/projects');
       } else {
         setError('Invalid login response');
       }
@@ -59,7 +59,7 @@ export default function SignIn() {
             Sign In with Google
           </h5>
         </div>
-        <div className="mb-6 flex items-center  gap-3">
+        <div className="mb-6 flex items-center gap-3">
           <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
           <p className="text-base text-gray-600 dark:text-white"> or </p>
           <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />

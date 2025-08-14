@@ -63,3 +63,23 @@ export const getProjectMilestones = async (id) => {
   });
   return res.data;
 };
+
+export const getInvoices = async () => {
+  const token = localStorage.getItem('authToken');
+  const res = await axios.get(`${API_BASE}/invoices`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+export const getProjectInvoices = async (id) => {
+  const token = localStorage.getItem('authToken');
+  const res = await axios.get(`${API_BASE}/invoices_details/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};

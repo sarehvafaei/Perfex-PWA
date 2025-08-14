@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getProjects } from "api/projects";
+import { getInvoices } from "api/projects";
 
 import Card from "components/card";
 //import CardMenu from "components/card/CardMenu";
@@ -28,27 +28,27 @@ const TaskStatusBadge = ({ label, color }) => {
 const columnHelper = createColumnHelper();
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
+  const [invoices, setInvoices] = useState([]);
   const [sorting, setSorting] = useState([]);
 
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const data = await getProjects();
-        setProjects(data);
+        const data = await getInvoices();
+        setInvoices(data.invoices || []);
       } catch (err) {
-        console.error("Error fetching projects:", err);
+        console.error("Error fetching invoices:", err);
       }
     }
     fetchProjects();
   }, []);
 
   const columns = [
-    columnHelper.accessor("id", {
+    columnHelper.accessor("formatted_number", {
       header: "Invoice #",
       cell: (info) => (
         <Link
-          to={`/admin/project/${info.row.original.id}`}
+          to={`/admin/invoice/${info.row.original.id}`}
           className="text-sm font-bold text-navy-700 underline hover:text-blue-600 dark:text-white"
         >
           {info.getValue()}
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
       header: "Due Date",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
-    columnHelper.accessor("number", {
+    columnHelper.accessor("total", {
       header: "Amount",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
@@ -78,7 +78,7 @@ export default function ProjectsPage() {
   ];
 
   const table = useReactTable({
-    data: projects,
+    data: invoices,
     columns,
     state: { sorting },
     onSortingChange: setSorting,

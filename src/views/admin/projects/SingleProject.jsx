@@ -10,6 +10,9 @@ import ProjectMilestones from "./tabs/ProjectMilestones";
 import ProjectFiles from "./tabs/ProjectFiles";
 import ProjectDiscussions from "./tabs/ProjectDiscussions";
 import ProjectGantt from "./tabs/ProjectGantt";
+import ProjectTickets from "./tabs/ProjectTickets";
+import ProjectProposals from "./tabs/ProjectProposals";
+import ProjectInvoices from "./tabs/ProjectInvoices";
 
 export default function SingleProject() {
   const { id } = useParams();
@@ -36,6 +39,9 @@ export default function SingleProject() {
     { key: "files", label: "Files", component: <ProjectFiles projectId={id} />, permission: "upload_files" },
     { key: "discussions", label: "Discussions", component: <ProjectDiscussions projectId={id} />, permission: "open_discussions" },
     { key: "gantt", label: "Gantt", component: <ProjectGantt projectId={id} />, permission: "view_gantt" },
+    { key: "tickets", label: "Tickets", component: <ProjectTickets projectId={id} /> },
+    { key: "proposals", label: "Proposals", component: <ProjectProposals projectId={id} /> },
+    { key: "invoices", label: "Invoices", component: <ProjectInvoices projectId={id} /> },
   ];
 
   const visibleTabs = allTabs.filter(tab => {

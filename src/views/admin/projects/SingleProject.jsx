@@ -5,7 +5,6 @@ import { getProjectDetails } from "api/projects";
 import Card from "components/card";
 import ProjectOverview from "./tabs/ProjectOverview";
 import ProjectTasks from "./tabs/ProjectTasks";
-import ProjectTimesheets from "./tabs/ProjectTimesheets";
 import ProjectMilestones from "./tabs/ProjectMilestones";
 import ProjectFiles from "./tabs/ProjectFiles";
 import ProjectDiscussions from "./tabs/ProjectDiscussions";
@@ -34,7 +33,6 @@ export default function SingleProject() {
   const allTabs = [
     { key: "overview", label: "Overview", component: <ProjectOverview project={project} /> },
     { key: "tasks", label: "Tasks", component: <ProjectTasks projectId={id} />, permission: "view_tasks" },
-    { key: "timesheets", label: "Timesheets", component: <ProjectTimesheets projectId={id} />, permission: "view_timesheets" },
     { key: "milestones", label: "Milestones", component: <ProjectMilestones projectId={id} />, permission: "view_milestones" },
     { key: "files", label: "Files", component: <ProjectFiles projectId={id} />, permission: "upload_files" },
     { key: "discussions", label: "Discussions", component: <ProjectDiscussions projectId={id} />, permission: "open_discussions" },
@@ -54,7 +52,6 @@ export default function SingleProject() {
       <header className="relative flex items-center justify-between pt-4 bg-white-light-1 overflow-x-auto">
         <div className="font-bold text-navy-700 dark:text-white">
           <div className="p-4">
-
             {/* Tabs */}
             <div className="flex space-x-4">
               {visibleTabs.map(tab => (
@@ -70,11 +67,8 @@ export default function SingleProject() {
           </div>
         </div>
       </header>
-
       {/* Tab Content */}
-      <div className="p-4">
-        {visibleTabs.find(tab => tab.key === activeTab)?.component}
-      </div>
+      {visibleTabs.find(tab => tab.key === activeTab)?.component}
     </Card>
   );
 }

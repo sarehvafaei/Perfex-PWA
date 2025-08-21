@@ -22,8 +22,8 @@ export default function ProjectOverview() {
     fetch();
   }, [id]);
 
-  if (project === null) return <div>Loading Overview...</div>;
-  if (project?.error) return <div>Error loading project.</div>;
+  if (project === null) return <div className="p-4"><p>Loading Overview...</p></div>;
+  if (project?.error) return <div className="p-4"><p>Error loading project.</p></div>;
 
   const deadline = project?.deadline ? new Date(project.deadline) : null;
   const start = project?.start_date ? new Date(project.start_date) : null;
@@ -50,7 +50,7 @@ export default function ProjectOverview() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className="mb-2"><strong>Project ID:</strong> #{project.id}</p>
-          <p className="mb-2"><strong>Billing Type:</strong> {project.billing_type}</p>
+          <p className="mb-2"><strong>Billing Type:</strong> {project.billing_type}, {project.billing_type_optional}</p>
           <p className="mb-2"><strong>Status:</strong> {project.status}</p>
           <p className="mb-2"><strong>Start Date:</strong> {project.start_date}</p>
           {project?.deadline && (

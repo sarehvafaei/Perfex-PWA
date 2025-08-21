@@ -21,7 +21,7 @@ export default function ProjectInvoices({ projectId }) {
     load();
   }, [projectId]);
 
-  if (loading) return <p>Loading Invoices...</p>;
+  if (loading) return <div className="p-4"><p>Loading Invoices...</p></div>;
 
   return (
     <div className="mt-8 mb-8 overflow-x-auto px-6">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getProjects } from "api/projects";
+import { getTickets } from "api/projects";
 
 import Card from "components/card";
 //import CardMenu from "components/card/CardMenu";
@@ -13,7 +13,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-const TaskStatusBadge = ({ label, color }) => {
+const StatusBadge = ({ label, color }) => {
   const bg = color ? `${color}22` : undefined; // add transparency
   return (
     <span
@@ -27,20 +27,20 @@ const TaskStatusBadge = ({ label, color }) => {
 
 const columnHelper = createColumnHelper();
 
-export default function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
+export default function TicketsPage() {
+  const [tickets, setTickets] = useState([]);
   const [sorting, setSorting] = useState([]);
 
   useEffect(() => {
-    async function fetchProjects() {
+    async function fetchTickets() {
       try {
-        const data = await getProjects();
-        setProjects(data);
+        const data = await getTickets();
+        setTickets(data.tickets || []);
       } catch (err) {
-        console.error("Error fetching projects:", err);
+        console.error("Error fetching tickets:", err);
       }
     }
-    fetchProjects();
+    fetchTickets();
   }, []);
 
   const columns = [
@@ -48,10 +48,10 @@ export default function ProjectsPage() {
       header: "Ticket #",
       cell: (info) => (
         <Link
-          to={`/admin/project/${info.row.original.id}`}
+          to={`/admin/ticket/${info.row.original.id}`}
           className="text-sm font-bold text-navy-700 underline hover:text-blue-600 dark:text-white"
         >
-          {info.getValue()}
+          #{info.getValue()}
         </Link>
       ),
     }),
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
       header: "Subject",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
-    columnHelper.accessor("contactid", {
+    columnHelper.accessor("contact", {
       header: "Contact",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
       header: "Department",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
-    columnHelper.accessor("project_id", {
+    columnHelper.accessor("project_name", {
       header: "Project",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
@@ -79,10 +79,10 @@ export default function ProjectsPage() {
       header: "Priority",
       cell: (info) => <p className="text-sm">{info.getValue()}</p>,
     }),
-    columnHelper.accessor("status", {
+    columnHelper.accessor("status_label", {
       header: "Status",
       cell: (info) => (
-        <span className="text-xs font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+        <span className="text-xs font-medium px-2 py-1 rounded-full">
           {info.getValue()}
         </span>
       ),
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
   ];
 
   const table = useReactTable({
-    data: projects,
+    data: tickets,
     columns,
     state: { sorting },
     onSortingChange: setSorting,
@@ -106,13 +106,13 @@ export default function ProjectsPage() {
     <Card extra="w-full h-full sm:overflow-auto">
       <div className="mt-8 mb-8 overflow-x-auto px-6">
         <table className="w-full">
-          <thead>
+          <thead className="bg-gray-100">
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="border-b border-gray-200">
+              <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="text-left text-xs text-gray-600 font-semibold pb-2 pr-4 cursor-pointer"
+                    className="px-4 py-2 text-left text-sm border border-gray-200 cursor-pointer"
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     {flexRender(

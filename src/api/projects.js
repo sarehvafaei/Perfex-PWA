@@ -76,7 +76,47 @@ export const getInvoices = async () => {
 
 export const getProjectInvoices = async (id) => {
   const token = localStorage.getItem('authToken');
-  const res = await axios.get(`${API_BASE}/invoices_details/${id}`, {
+  const res = await axios.get(`${API_BASE}/project_invoices/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+export const getProposals = async () => {
+  const token = localStorage.getItem('authToken');
+  const res = await axios.get(`${API_BASE}/proposals`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+export const getProjectProposals = async (id) => {
+  const token = localStorage.getItem('authToken');
+  const res = await axios.get(`${API_BASE}/project_proposals/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+export const getTickets = async () => {
+  const token = localStorage.getItem('authToken');
+  const res = await axios.get(`${API_BASE}/tickets`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+export const getProjectTickets = async (id) => {
+  const token = localStorage.getItem('authToken');
+  const res = await axios.get(`${API_BASE}/project_tickets/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

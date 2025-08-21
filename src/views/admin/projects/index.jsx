@@ -1,6 +1,6 @@
 import Widget from "components/widget/Widget";
 import React, { useEffect, useState } from "react";
-import { getProjects} from "api/projects";
+import { getProjects } from "api/projects";
 import { columnsDataDevelopment } from "./variables/columnsData";
 import tableDataDevelopment from "./variables/tableDataDevelopment.json";
 import DevelopmentTable from "./components/DevelopmentTable";
@@ -78,7 +78,7 @@ export default function ProjectsPage() {
           {Statuses.map((status) => (
             <div
               key={status.id}
-              className={`p-4 rounded-xl shadow-sm flex flex-col items-center`}
+              className={`p-4 rounded-md bg-white shadow-sm flex flex-col items-center`}
             >
               {/* Status badge */}
               <StatusBadge label={status.label} color={status.color} />

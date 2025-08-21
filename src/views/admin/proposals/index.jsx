@@ -1,9 +1,15 @@
-import Widget from "components/widget/Widget";
 import React, { useEffect, useState } from "react";
-import { getProjects} from "api/projects";
+import { getProposals } from "api/projects";
 import { columnsDataDevelopment } from "./variables/columnsData";
 import tableDataDevelopment from "./variables/tableDataDevelopment.json";
 import DevelopmentTable from "./components/DevelopmentTable";
+
+const Statuses = [
+  { id: 1, label: "Unpaid", color: "#ef4444", bg: "#f8f8f9" },
+  { id: 2, label: "Paid", color: "#16a34a", bg: "#f6f9fe" },
+  { id: 3, label: "Partially Paid", color: "#ca8a04", bg: "bg-orange-100" },
+  { id: 4, label: "Overdue", color: "#ca8a04", bg: "#f6fcf8" },
+];
 
 const StatusBadge = ({ label, color }) => {
   const bg = color ? `${color}22` : undefined; // transparent background
@@ -18,45 +24,19 @@ const StatusBadge = ({ label, color }) => {
 };
 
 export default function ProposalsPage() {
-  const [projects, setProjects] = useState([]);
-  const [statusMap, setStatusMap] = useState({});
-  const [statusColors, setStatusColors] = useState({});
+  const [proposals, setProposals] = useState([]);
 
   useEffect(() => {
-    async function fetchProjects() {
+    async function fetchProposals() {
       try {
-        const data = await getProjects();
-
-        // If backend sends the maps along with projects
-        if (projects.status_label) {
-          setStatusMap(projects.status_label);
-        }
-        if (projects.status_color) {
-          setStatusColors(projects.status_color);
-        }
-
-        setProjects(data);
+        const data = await getProposals();
+        setProposals(data.proposals || []);
       } catch (err) {
-        console.error("Error fetching projects:", err);
+        console.error("Error fetching proposals:", err);
       }
     }
-    fetchProjects();
+    fetchProposals();
   }, []);
-
-  // Calculate counts for each status
-  //const summary = {
-    //1: projects.filter((p) => p.status_id === 1).length, // Not Started
-    //2: projects.filter((p) => p.status_id === 2).length, // In Progress
-    //3: projects.filter((p) => p.status_id === 3).length, // On Hold
-    //4: projects.filter((p) => p.status_id === 4).length, // Cancelled
-    //5: projects.filter((p) => p.status_id === 5).length, // Finished
-  //};
-
-  // Calculate counts for each status
-  const summary = Object.keys(statusMap).reduce((acc, id) => {
-    acc[id] = projects.filter((p) => p.status_id === id).length;
-    return acc;
-  }, {});
 
   return (
     <div>
